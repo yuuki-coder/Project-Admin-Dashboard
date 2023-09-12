@@ -1,14 +1,14 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: roboto;
+  box-sizing: border-box;
 }
 
 .container {
-  height: 100vh;
   display: grid;
-  grid-template: auto 1fr / 18rem 1fr;
+  height: 100vh;
+  grid-template: 1fr 4fr / 1fr 4fr;
   grid-template-areas:
     "sidebar header"
     "sidebar mainContent";
@@ -16,60 +16,73 @@
 
 .sidebar {
   color: white;
-  height: 100vh;
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto 1fr auto 3fr;
   grid-template-areas:
     "sidebarTop"
+    "."
     "sidebarMiddle"
-    "sidebarBottom";
+    "."
+    "sidebarBottom"
+    ".";
   grid-area: sidebar;
   background-color: #1992d4;
-  gap: 4rem;
+  padding: 2rem;
+  font-weight: bold;
+}
+.sidebarItem {
+  display: grid;
+  grid-template: 1fr / auto 1fr;
+  gap: 2rem;
+  align-items: center;
+  text-decoration: none;
 }
 
-.sidebar p {
-  font-weight: bold;
+.sidebarItemTop {
   display: grid;
-  align-self: center;
-  cursor: pointer;
+  grid-template: 1fr / auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #fff;
 }
 
 .bigIcon {
-  fill: #fff;
-  height: 3rem;
-  display: grid;
-  place-self: center;
   cursor: pointer;
+  fill: #fff;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .smallIcon {
   fill: #fff;
   height: 1.5rem;
+  width: 1.5rem;
   display: grid;
   place-self: center;
 }
 
 .sidebar-top {
   display: grid;
-  grid-template-columns: 5rem 1fr;
-  grid-template-rows: 5rem;
+  align-items: center;
   grid-area: sidebarTop;
   font-size: 1.5rem;
-  font-weight: bold;
 }
 .sidebar-middle {
   display: grid;
   grid-area: sidebarMiddle;
-  grid-template-columns: 5rem auto;
-  grid-template-rows: repeat(6, 3.5rem);
+  gap: 2rem;
+  align-items: center;
 }
 .sidebar-bottom {
   display: grid;
   grid-area: sidebarBottom;
-  grid-template-columns: 5rem 1fr;
-  grid-template-rows: repeat(3, 3.5rem);
+  gap: 2rem 2rem;
+  align-items: center;
 }
 
 .header {
@@ -79,40 +92,47 @@
   -moz-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
   z-index: 1;
+  grid-template: 1fr/ 1fr;
+  grid-template-areas: "headerContainer";
+  padding: 1rem;
 }
 
 .headerContainer {
+  grid-area: headerContainer;
   background-color: #fff;
   display: grid;
-  grid-template: auto auto auto / auto;
+  grid-template: 1fr 1fr / 1fr;
   justify-self: center;
   color: #000;
   grid-template-areas:
     "headerTop"
     "headerBottom";
-  gap: 2rem;
-  width: 75%;
+  gap: 1rem;
+  width: 90%;
 }
 
 .smallIconHeader {
   fill: #000;
   height: 1.5rem;
+  width: 1.5rem;
   cursor: pointer;
 }
 
 .header-top {
   display: grid;
-  grid-template: 5rem / 1fr 1fr auto 7rem auto;
-  align-items: center;
+  grid-template: 1fr / 2fr 1fr auto auto auto;
   justify-items: center;
+  align-items: center;
   grid-template-areas: "searchArea ... bellringIcon profilePicture username";
   grid-area: headerTop;
+  gap: 1rem;
 }
 
 .profilePicture {
   height: 3rem;
+  width: 3rem;
   grid-area: profilePicture;
-  border-radius: 40px;
+  border-radius: 50px;
   cursor: pointer;
 }
 
@@ -151,11 +171,12 @@
 }
 .searchArea {
   display: grid;
-  grid-template: 1fr / 2.5rem 1fr;
+  grid-template: 1fr / auto 1fr;
   grid-template-areas: "searchIcon searchInput";
   grid-area: searchArea;
   align-items: center;
   justify-self: stretch;
+  gap: 1rem;
 }
 
 .profilePicture2 {
@@ -169,9 +190,10 @@
 
 .header-bottom {
   grid-area: headerBottom;
+  align-items: center;
   display: grid;
   grid-template: 1fr/ 1fr 1fr 1fr;
-  grid-template-areas: "headerBottomLeft  ... headerBottomRight ";
+  grid-template-areas: "headerBottomLeft  ... headerBottomRight";
 }
 .headerBottomLeft h2 {
   grid-area: h2;
@@ -192,73 +214,194 @@
   grid-template-areas:
     "profilePicture2 h5"
     "profilePicture2 h2";
-  gap: 1rem 2rem;
+  gap: 1rem 1rem;
+  align-items: flex-end;
 }
 
 .headerBottomRight {
   grid-area: headerBottomRight;
   display: grid;
-  align-items: center;
+  align-items: flex-end;
   grid-template-columns: auto auto auto;
-  gap: 2rem;
+  gap: 1rem;
+}
+.headerBottomRight a {
+  text-decoration: none;
 }
 
-.headerButton {
-  padding: 0.8rem 1.5rem;
+.headerBottomRight a {
   border: none;
-  border-radius: 30px;
+
   background-color: #1992d4;
   font-weight: 500;
   color: #fff;
   display: grid;
   cursor: pointer;
+  margin: 0;
+  border-radius: 30px;
+}
+
+.headerBottomRight input {
+  background-color: #1992d4;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 30px;
+}
+
+.mainContent {
+  grid-area: mainContent;
+  background-color: #e2e8f0;
+  display: grid;
+  grid-template: 1fr/1fr;
+  grid-template-areas: "mainContentContainer";
+  padding: 1rem 0;
 }
 
 .mainContentContainer {
-  background-color: #e2e8f0;
-  grid-area: mainContent;
-  display: grid;
-}
-.mainContent {
-  width: 90%;
-  grid-template: 1fr 1fr / 1fr 1fr 1fr;
+  grid-template: auto auto/ 1.5fr 1.5fr 1fr;
   display: grid;
   grid-template-areas:
     "yourProjects yourProjects announcements"
     "yourProjects yourProjects trending";
+  width: 95%;
   justify-self: center;
-  gap: 2rem;
-}
+  gap: 1rem;
 
-.yourProjects {
-  grid-area: yourProjects;
+  grid-area: mainContentContainer;
 }
 
 .projectsContainer {
   display: grid;
+  grid-area: projectsContainer;
+  gap: 1rem;
   grid-template: 1fr 1fr 1fr/ 1fr 1fr;
-  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-rows: repeat(auto-fit, minmax(10rem, 1fr));
 }
-
-.trending {
-  grid-area: trending;
+.yourProjects {
+  gap: 1rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-area: yourProjects;
+  grid-template-areas:
+    "yourProjectsH3"
+    "projectsContainer";
 }
-
+.yourProjects > h3 {
+  grid-area: yourProjectsH3;
+}
+.announcements > h3 {
+  grid-area: announcementsH3;
+}
 .announcements {
   grid-area: announcements;
-}
-.mainContent h3 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  display: grid;
+  grid-template: auto 1fr/ 1fr;
+  grid-template-areas:
+    "announcementsH3"
+    "announcemenstsContainer";
 }
 
 .projectsBox {
   background-color: #fff;
   border-left: 0.5rem solid #f0b429;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   -webkit-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  gap: 1rem;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "projectsBoxTop"
+    "projectsBoxBottom";
+}
+.projectsBoxTop {
+  display: grid;
+  grid-area: projectsBoxTop;
+  gap: 0.5rem;
+}
+
+.projectsBoxTop P,
+.announcements p,
+.message2 {
+  color: #898989;
+}
+
+.projectsBoxBottom {
+  display: grid;
+  grid-area: projectsBoxBottom;
+  gap: 1rem;
+  justify-self: flex-end;
+  grid-auto-flow: column;
+  align-items: center;
+}
+.announcementsContainer {
+  background-color: #fff;
+  grid-area: announcemenstsContainer;
+  padding: 1rem;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+  gap: 1rem;
+  display: grid;
+}
+
+.projectsBoxMessage {
+  display: grid;
+  gap: 0.5rem;
+  -webkit-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+}
+
+.projectsBoxMessageAlt {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.trending {
+  grid-area: trending;
+  display: grid;
+  grid-template: auto 1fr / 1fr;
+  gap: 1rem;
+}
+
+.trendingContainer {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 10px 15px -15px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(2rem, 1fr));
+  gap: 1rem;
+}
+.profilePicture3 {
+  height: 3rem;
+  border-radius: 30px;
+}
+
+.trendingInfo {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template: auto / auto 1fr;
+  gap: 1rem;
+}
+
+.trendingInfo2 {
+  display: grid;
+  grid-template: auto auto / 1fr;
+}
+.message1 {
+  font-weight: bold;
 }
